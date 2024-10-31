@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .login-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 8px;
+            color: #fff;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .input-field {
+            width: calc(100% - 40px);
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #76b900;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-btn:hover {
+            background-color: #5c8d00;
+        }
+        .login-container p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .login-container a {
+            color: #76b900;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #ff4d4d;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-video">
+        <iframe src="https://www.youtube.com/embed/AsykNkUMoNU?si=nIwOu2dEvOODI8R1&autoplay=1&mute=1&loop=1&controls=0&playlist=AsykNkUMoNU"
+                frameborder="0" allow="autoplay; loop; fullscreen" 
+                style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; object-fit: cover;">
+        </iframe>
+    </div>
+
+    <div class="login-container">
+        <h2>NVIDIA Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="text" id="username" class="input-field" placeholder="Enter Username" required>
+            <div class="password-container">
+                <input type="password" id="password" class="input-field" placeholder="Enter Password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
+            <button type="submit" class="login-btn">Log In</button>
+            <p><a href="forgot_password.html">Forgot password?</a></p>
+            <p class="error-message" id="error-message">Wrong password.</p>
+        </form>
+    </div>
+
+    <script>
+        const correctPassword = "Geforce Rtx 4090";
+        function handleLogin(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById("username").value;
+            const passwordInput = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+            if (passwordInput === correctPassword) {
+                window.location.href = "https://www.nvidia.com";
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.querySelector(".toggle-password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.textContent = "👁️"; 
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.textContent = "👁️"; 
+            }
+        }
+    </script>
+
+</body>
+</html>
